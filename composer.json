@@ -1,0 +1,8 @@
+{
+    "name": "moose/easyhead",
+    "autoload": {
+	"psr-4": {
+	    "Moose\\EasyHead\\": "wwwroot/"
+	}
+    }
+}
