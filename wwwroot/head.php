@@ -3,22 +3,34 @@
 include "head-handler.php";
 use GenerateHead\MetaData;
 
-$meta = MetaData::Instance();
-$meta->addMeta([
+$head = MetaData::Instance();
+$head->addMeta([
     "x-ua-compatible" => "as",
     "viewport" => "alksdjjlks",
     "article:author" => "Jesus Christ Superstar"
 ]);
 
-$meta->addTag([
-    "title" => "A King has His Reign"
+$head->addTag([
+    "title" => "A King has His Reign",
+    "base" => "example.com/base/",
 ]);
 
+$head->addLink([
+    "apple-touch-icon-precomposed" => ["path/to/apple-touch-icon.png"],
+    "apple-touch-icon" => ["path/to/icon@57.png",
+                           "path/to/icon@72.png",
+                           "path/to/icon@92.png"],
+    "stylesheet" => ["app.css","vendor-1.css","vendor-2.css"]
+]);
 
-// if adding meta, need to verify that it exists in meta!
-// should be able to take array as key
-//<meta name="application-name" content="Application Name">
-// user puts application-name and the name, not "content" and "name" keys
-// certain tags must not be closed
+$head->getElements("meta");
 
-$meta->getElements();
+// Get element values added, type can be specified
+// option to specify which tags, or use all (with values)
+//$meta->dumpData("tag");
+
+
+// Get full list of available eleme$thisnt attributes
+//$meta->dumpKeys();
+
+die();
