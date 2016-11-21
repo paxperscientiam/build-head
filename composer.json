@@ -1,8 +1,18 @@
 {
     "name": "moose/easyhead",
+    "description": "simplify adding HTML elements to head",
+    "license": "MIT",
+    "authors": [
+	{
+	    "name": "Christopher Ramos"
+	}
+    ],
     "autoload": {
 	"psr-4": {
-	    "Moose\\EasyHead\\": "wwwroot/"
+	    "Moose\\EasyHead\\": "src/"
 	}
+    },
+    "require": {
+        "maxkostinevich/flatdb": "^1.0"
     }
 }
