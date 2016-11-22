@@ -1,9 +1,8 @@
 <?PHP namespace Moose\Easyhead; // -*- mode:php -*-
-// PHP >= 5.4
 // inspired by https://github.com/joshbuchea/HEAD
 // thanks to https://sourcemaking.com/design_patterns/prototype/php
 //
-// need to keep cetain order[<8;48;4m
+// need to keep cetain order
 // caching
 // should values be limited to certain values?
 // there should be a master array to union with that requires matching keys
@@ -37,11 +36,12 @@ class Meta
 
     private static $_instance = null;
     //
-    private $headers;
-    private $data;
-    private $template;
+    private $headers = [];
+    private $data = [];
+    private $template =[];
 
     public function __construct () {
+        $this->data["pair"] = [];
         self::setHeaders();
         self::setAttr();
 
@@ -150,10 +150,11 @@ class Meta
     private function setHeaders() {
         $this->headers = ["name","http-equiv","content"];
     }
+    //
     private function setAttr() {
         $this->template =
                         ["pair" => [
-                            "viewport" => "",
+                            "viewport" => "width=device-width, initial-scale=1.0",
                             "application-name" => "",
                             "description" => "",
                             "robots" => "",
@@ -171,19 +172,22 @@ class Meta
                             "geo.position" => "",
                             "geo.region" => "",
                             "geo.placename" => ""
-
-
                         ]];
     }
-    public function getElements() {
-        $filteredArray = array_filter(array_intersect_key(
-            $this->data["pair"],
-            $this->template["pair"]
-        ));
+    //
+    public function getElements($resultType) {
+        if ($resultType !== NULL) {
+            $filteredArray = array_filter(array_intersect_key(
+                $this->data["pair"],
+                $this->template["pair"]
+            ));
+        } else {
+            $filteredArray = $this->template["pair"];
+        }
         //
         foreach ($filteredArray as $k => $v) {
-            echo PHP_EOL;
-            echo "<meta name='{$k}' content='{$v}' >";
+            print "<meta name=\"$k\" content=\"$v\" >".PHP_EOL;
+
 
         }
     }
@@ -210,11 +214,12 @@ class Link
 
     private static $_instance = null;
     //
-    private $headers;
-    private $data;
-    private $template;
+    private $headers = [];
+    private $data = [];
+    private $template = [];
 
     public function __construct () {
+        $this->data["pair"] = [];
         self::setHeaders();
         self::setAttr();
     }
@@ -222,28 +227,27 @@ class Link
     private function setHeaders() {
         $this->headers = ["rel","href"];
     }
+    //
     private function setAttr() {
         $this->template =
-                        ["pair" =>
-                         [
-                             "canonical" => "",
-                             "stylesheet" => "",
-                             "shortlink" => "",
-                             "amphtml" => "",
-                             "author" =>""
-                         ]
-                        ];
+                        ["pair" => [
+                            "canonical" => "",
+                            "stylesheet" => "",
+                            "shortlink" => "",
+                            "amphtml" => "",
+                            "author" => ""
+                        ]];
     }
-
-
-
-
     //
-    public function getElements() {
-        $filteredArray = array_filter(array_intersect_key(
-            $this->data["pair"],
-            $this->template["pair"]
-        ));
+    public function getElements($resultType) {
+        if ($resultType !== NULL) {
+            $filteredArray = array_filter(array_intersect_key(
+                $this->data["pair"],
+                $this->template["pair"]
+            ));
+        } else {
+            $filteredArray = $this->template["pair"];
+        }
         //
         foreach ($filteredArray as $k => $v) {
             echo PHP_EOL;

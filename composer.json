@@ -12,7 +12,16 @@
 	    "Moose\\EasyHead\\": "src"
 	}
     },
+    "minimum-stability": "dev",
+    "repositories": [
+	{
+	    "type": "vcs",
+	    "url": "https://bitbucket.org/archon810/smartdomdocument.git"
+	}
+    ],
     "require": {
-        "maxkostinevich/flatdb": "^1.0"
-    }
+        "maxkostinevich/flatdb": "^1.0",
+	"archon810/smartdomdocument": "dev-master"
+    },
+    "PHP": ">=5.4"
 }
